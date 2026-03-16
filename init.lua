@@ -606,24 +606,27 @@ require('lazy').setup({
         -- pyright = {},
         -- rust_analyzer = {},
         --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {
-          -- Let Volar handle TS inside Vue files
-          filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
-        },
-
-        vue_ls = {
-          init_options = {
-            vue = {
-              hybridMode = false,
+        -- vtsls handles TypeScript and also serves as the TS backend for vue_ls v3
+        vtsls = {
+          settings = {
+            vtsls = {
+              tsserver = {
+                globalPlugins = {
+                  {
+                    name = '@vue/typescript-plugin',
+                    location = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server',
+                    languages = { 'vue' },
+                    configNamespace = 'typescript',
+                  },
+                },
+              },
             },
           },
+          filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue' },
         },
 
-        stylua = {}, -- Used to format Lua code
+        -- Vue Language Server v3 — delegates TS work to vtsls above
+        vue_ls = {},
 
         -- Special Lua Config, as recommended by neovim help docs
         lua_ls = {
@@ -664,6 +667,7 @@ require('lazy').setup({
       -- You can press `g?` for help in this menu.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'stylua', -- Lua formatter
         -- You can add other tools here that you want Mason to install
       })
 
