@@ -49,4 +49,9 @@ keymap.set('n', 'H', '^', opts)
 keymap.set('n', 'L', '$', opts)
 keymap.set('i', 'jk', '<ESC>', opts)
 
+-- LSP
+keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts) -- Go to Definition
+keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts) -- Go to References
+keymap.set('n', '<leader>gI', vim.lsp.buf.implementation, opts) -- Go to Implementation
+
 return {}
