@@ -610,7 +610,18 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {
+          -- Let Volar handle TS inside Vue files
+          filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+        },
+
+        vue_ls = {
+          init_options = {
+            vue = {
+              hybridMode = false,
+            },
+          },
+        },
 
         stylua = {}, -- Used to format Lua code
 
