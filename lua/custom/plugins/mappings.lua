@@ -24,10 +24,6 @@ keymap.set('n', '<C-l>', 'TmuxNavigateRight', opts) -- Navigate Right
 keymap.set('v', '<', '<gv')
 keymap.set('v', '>', '>gv')
 
---comments
-keymap.set('n', '<leader>c', ':CommentToggle<CR>', opts)
-keymap.set('v', '<leader>c', ':CommentToggle<CR>', opts)
-
 -- Move
 keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts)
 keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)

@@ -605,7 +605,22 @@ require('lazy').setup({
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
-        --
+
+        -- Java (requires Java 21+ on the system to run the server itself)
+        jdtls = {},
+
+        -- Kotlin
+        kotlin_language_server = {},
+
+        -- Groovy
+        groovyls = {
+          cmd = {
+            'java',
+            '-jar',
+            vim.fn.stdpath 'data' .. '/mason/packages/groovy-language-server/build/libs/groovy-language-server-all.jar',
+          },
+        },
+
         -- vtsls handles TypeScript and also serves as the TS backend for vue_ls v3
         vtsls = {
           settings = {
@@ -792,6 +807,7 @@ require('lazy').setup({
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        trigger = { prefetch_on_insert = false },
       },
 
       sources = {
